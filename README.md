@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📚 LMS App
+Простое и современное веб-приложение для системы управления обучением (LMS), созданное на **Next.js** (это всё ещё React, но с улучшениями для производительности и удобства разработки).
 
-## Getting Started
+---
 
-First, run the development server:
+## 🚀 Технологии
+- [Next.js](https://nextjs.org/) — фронтенд-фреймворк на основе React  
+- [Node.js](https://nodejs.org/) — среда выполнения JavaScript  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Установка и запуск
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Установите Node.js**  
+   Приложение создавалось на версии **v20.19.5**.  
+   > ⚠️ Если установить другую версию, приложение может не запуститься из-за несовместимости.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Установите зависимости**  
+   ```bash
+   npm install
 
-## Learn More
+3. **Запустите приложение в режиме разработки**
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🗂 Структура проекта
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* Основная логика и компоненты приложения находятся в папке **`src/`**.
+* Маршрутизация и рендеринг управляются самим Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 💻 Рекомендации по разработке
+
+* Для удобства можно использовать **IntelliJ IDEA** — она отлично поддерживает проекты на React/Next.js (есть кнопка **Run** для быстрого запуска).
+* Файл проекта IntelliJ (`.iml`) создаётся автоматически и хранит настройки модуля, его можно игнорировать в Git.
