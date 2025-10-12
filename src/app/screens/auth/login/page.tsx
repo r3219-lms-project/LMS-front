@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { LoginForm } from "@/types/auth";
 import { login } from "@/lib/api/authApi";
+import Link from "next/link";
 
 const LoginPage = () => {
     const [ok, setOk] = useState(false);
@@ -95,6 +96,10 @@ const LoginPage = () => {
                         {loading ? "Входим в аккаунт..." : "Войти в аккаунт"}
                     </button>
                 </form>
+
+                <div className="pt-5">
+                    <Link href="/auth/register">У вас еще нету аккаунта? Нажмите чтобы зарегистрироваться</Link>
+                </div>
             </div>
         </div>
     )

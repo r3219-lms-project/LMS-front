@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { RegisterForm } from '@/types/auth';
 import { register } from "@/lib/api/authApi";
+import Link from "next/link";
 
 const RegisterPage = () => {
     const [form, setForm] = useState<RegisterForm>({
@@ -132,6 +133,10 @@ const RegisterPage = () => {
                         {loading ? "Регистрируем вас..." : "Регистрация"}
                     </button>
                 </form>
+
+                <div className="pt-5">
+                    <Link href="/auth/login">У вас уже есть аккаунт? Нажмите чтобы войти</Link>
+                </div>
             </div>
         </div>
     )
