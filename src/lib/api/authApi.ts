@@ -1,4 +1,4 @@
-import type { RegisterForm } from "@/types/auth";
+import type { LoginForm, RegisterForm } from "@/types/auth";
 import { error } from "console";
 
 type ApiError = { message: string; code?: string };
@@ -34,4 +34,11 @@ export const register = async (form: RegisterForm): Promise<{ok: true; userId?: 
         method: "POST",
         body: JSON.stringify(form)
     });
+}
+
+export const login = async (form: LoginForm): Promise<{ok: true; userId?: string}> => {
+    return jsonFetch<{ok: true}>(`${BASE}/login`, {
+        method: "POST",
+        body: JSON.stringify(form)
+    })
 }
