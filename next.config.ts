@@ -5,7 +5,23 @@ const nextConfig: NextConfig = {
 
   async rewrites() {
     return [
-      {source: '/screens/:path', destination: "/:path"}
+      {
+        source: '/',
+        destination: '/screens',
+      },
+      {
+        source: '/:path*',
+        destination: '/screens/:path*',
+      },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/screens/:path*',
+        destination: '/:path*',
+        permanent: true,
+      },
     ];
   }
 };

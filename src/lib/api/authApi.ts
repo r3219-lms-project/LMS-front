@@ -1,4 +1,5 @@
 import type { RegisterForm } from "@/types/auth";
+import { error } from "console";
 
 type ApiError = { message: string; code?: string };
 const BASE = process.env.NEXT_PUBLIC_AUTH_API;
@@ -16,7 +17,9 @@ const jsonFetch = async <T, >(url: string, init?: RequestInit): Promise<T> => {
     let data: unknown = null
     try {
         data = await res.json();
-    } catch {}
+    } catch {
+        data = { message: "Failed to parse response" };
+    }
 
     if(!res.ok) {
         const err = (data as ApiError) || { message: "Request failed"};

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { RegisterForm } from '@/types/auth';
+import { register } from "@/lib/api/authApi";
 
 const RegisterPage = () => {
     const [form, setForm] = useState<RegisterForm>({
@@ -27,12 +28,15 @@ const RegisterPage = () => {
         setLoading(true);
 
         try {
-            await new Promise(r => setTimeout(r, 600));
+            const response = await register(form);
 
             setOk(true);
             setForm({firstName: "", lastName: "", email: "", password: ""})
-        } catch(err) {
-            setError("Регистрация не удалась");
+            console.log("Registration was successfull");
+        } catch(err: any) {
+            const errorMessage = err.message || "Регистрация не удалась";
+            setError(errorMessage);
+            console.error("Registration failed");
         } finally {
             setLoading(false);
         }
