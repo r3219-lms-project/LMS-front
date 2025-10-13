@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { LoginForm } from "@/types/auth";
-import { login } from "@/lib/api/authApi";
+import { login } from "@/lib/authActions";
 import Link from "next/link";
 
 const LoginPage = () => {
@@ -27,8 +27,18 @@ const LoginPage = () => {
 
         try {
             const response = await login(form);
-            setForm({email: "", password: ""});
-            console.log("Login was successfull");
+            
+            if(response.ok) {
+                setForm({email: "", password: ""});
+                setOk(true);
+                console.log("Login was successfull");
+                // TODO redirect to profile, not courses
+                window.location.href = '/courses';
+            } else {
+                setError(response.error || "Не удалось войти в аккаунт");
+                console.error('Login failed');
+            }
+
         } catch (err: any) {
             const errorMessage = err.message || "Не удалось войти в аккаунт";
             setError(errorMessage);

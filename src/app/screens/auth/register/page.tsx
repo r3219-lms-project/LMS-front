@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { RegisterForm } from '@/types/auth';
-import { register } from "@/lib/api/authApi";
+import { register } from "@/lib/authActions";
 import Link from "next/link";
 
 const RegisterPage = () => {
@@ -31,9 +31,14 @@ const RegisterPage = () => {
         try {
             const response = await register(form);
 
-            setOk(true);
-            setForm({firstName: "", lastName: "", email: "", password: ""})
-            console.log("Registration was successfull");
+            if (response.ok) {
+                setOk(true);
+                setForm({firstName: "", lastName: "", email: "", password: ""})
+                console.log("Registration was successfull");
+                // TODO redirect to profile, not courses
+                window.location.href = '/courses';
+            }
+
         } catch(err: any) {
             const errorMessage = err.message || "Регистрация не удалась";
             setError(errorMessage);
