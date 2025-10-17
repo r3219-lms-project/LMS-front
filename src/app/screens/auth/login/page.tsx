@@ -32,8 +32,7 @@ const LoginPage = () => {
                 setForm({email: "", password: ""});
                 setOk(true);
                 console.log("Login was successfull");
-                // TODO redirect to profile, not courses
-                window.location.href = '/courses';
+                window.location.href = '/users/profile';
             } else {
                 setError(response.error || "Не удалось войти в аккаунт");
                 console.error('Login failed');

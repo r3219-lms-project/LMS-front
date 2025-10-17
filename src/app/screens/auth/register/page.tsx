@@ -35,8 +35,7 @@ const RegisterPage = () => {
                 setOk(true);
                 setForm({firstName: "", lastName: "", email: "", password: ""})
                 console.log("Registration was successfull");
-                // TODO redirect to profile, not courses
-                window.location.href = '/courses';
+                window.location.href = '/users/profile';
             }
 
         } catch(err: any) {
