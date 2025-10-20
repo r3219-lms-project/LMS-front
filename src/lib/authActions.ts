@@ -1,6 +1,7 @@
 'use server';
 
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 import type { LoginForm, RegisterForm } from "@/types/auth";
 
@@ -118,7 +119,7 @@ export const logout = async () => {
     (await cookies()).delete('access_token');
     (await cookies()).delete('refresh_token');
 
-    window.location.href = '/auth/login'
+    redirect('/auth/login');
 }
 
 // TODO /logout-all
