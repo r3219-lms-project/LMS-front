@@ -15,11 +15,11 @@ type ActionResult = {
     error?: string;
 }
 
-const BASE = process.env.NEXT_PUBLIC_AUTH_API;
+const BASE = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
 
 export const login = async (form: LoginForm) => {
     try {
-        const response = await fetch(`${BASE}/login`, {
+        const response = await fetch(`${BASE}/api/v1/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -65,7 +65,7 @@ export const login = async (form: LoginForm) => {
 
 export const register = async (form: RegisterForm): Promise<ActionResult> => {
     try {
-        const response = await fetch(`${BASE}/register`, {
+        const response = await fetch(`${BASE}/api/v1/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(form)
@@ -97,7 +97,7 @@ export const logout = async () => {
 
     if(refreshToken) {
         try {
-            const response = await fetch(`${BASE}/logout`, {
+            const response = await fetch(`${BASE}/api/v1/auth/logout`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
