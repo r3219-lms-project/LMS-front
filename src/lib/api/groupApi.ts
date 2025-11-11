@@ -1,12 +1,11 @@
 import type {
     Group,
     CreateGroupRequest,
-    CreateGroupResponse,
     UpdateGroupRequest,
     ChangeGroupStatusRequest,
 } from '@/types/group';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_GATEWAY_URL || 'http://localhost:8080';
 
 async function fetchWithErrorHandling(url: string, options?: RequestInit) {
     try {
@@ -32,17 +31,17 @@ async function fetchWithErrorHandling(url: string, options?: RequestInit) {
 
 export const groupApi = {
     async getAllGroups(): Promise<Group[]> {
-        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/groups`);
+        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/v1/groups`);
         return response.json();
     },
 
     async getGroupById(id: string): Promise<Group> {
-        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/groups/${id}`);
+        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/v1/groups/${id}`);
         return response.json();
     },
 
-    async createGroup(data: CreateGroupRequest): Promise<CreateGroupResponse> {
-        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/groups`, {
+    async createGroup(data: CreateGroupRequest): Promise<Group> {
+        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/v1/groups`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +52,7 @@ export const groupApi = {
     },
 
     async updateGroup(id: string, data: UpdateGroupRequest): Promise<Group> {
-        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/groups/${id}`, {
+        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/v1/groups/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -64,13 +63,13 @@ export const groupApi = {
     },
 
     async deleteGroup(id: string): Promise<void> {
-        await fetchWithErrorHandling(`${API_BASE_URL}/api/groups/${id}`, {
+        await fetchWithErrorHandling(`${API_BASE_URL}/api/v1/groups/${id}`, {
             method: 'DELETE',
         });
     },
 
     async changeStatus(id: string, data: ChangeGroupStatusRequest): Promise<Group> {
-        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/groups/${id}/status`, {
+        const response = await fetchWithErrorHandling(`${API_BASE_URL}/api/v1/groups/${id}/status`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
