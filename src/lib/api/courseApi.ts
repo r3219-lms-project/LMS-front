@@ -6,7 +6,7 @@ import type {
     ChangeStatusRequest,
 } from '@/types/course';
 
-const BASE = process.env.NEXT_PUBLIC_COURSES_API!;
+const BASE = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
 const JSON_HEADERS = { 'Content-Type': 'application/json' };
 
 function ok(res: Response) {
