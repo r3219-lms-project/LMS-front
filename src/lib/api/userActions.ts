@@ -3,7 +3,7 @@
 import { cookies } from "next/headers";
 import { User } from "@/types/user";
 
-const BASE = process.env.NEXT_PUBLIC_USER_API;
+const BASE = process.env.NEXT_PUBLIC_API_GATEWAY_URL;
 
 type ActionResult<T> = {
     ok: boolean,
@@ -21,11 +21,11 @@ export const getUserByEmail = async (email: string): Promise<ActionResult<User>>
     if(!accessToken) return {ok: false, error: "Необходимо войти в аккаунт!"};
 
     try {
-        const response = await fetch(`${BASE}/by-email?email=${email}`, {
+        const response = await fetch(`${BASE}api/v1/users/by-email?email=${email}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                // Add authorization after service refactoring
+                'Authoriztion': `Bearer ${accessToken}`
             }
         });
 
@@ -48,11 +48,11 @@ export const getUserById = async (id: string): Promise<ActionResult<User>> => {
     if (!accessToken) return {ok: false, error: "Необходимо войти в аккаунт!"};
 
     try {
-        const response = await fetch(`${BASE}/${id}`, {
+        const response = await fetch(`${BASE}/api/v1/users/${id}`, {
             method: "GET",
             headers: {
-                "Content-Type": 'application/json'
-                // Need to add authorization
+                "Content-Type": 'application/json',
+                "Authorization": `Bearer ${accessToken}`
             }
         });
 
